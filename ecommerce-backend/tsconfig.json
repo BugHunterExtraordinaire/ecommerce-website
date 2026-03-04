@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es2020",          /* Set the JavaScript version for the output. */
+    "module": "commonjs",        /* Node.js uses CommonJS by default. */
+    "rootDir": "./src",          /* Where your .ts source files live. */
+    "outDir": "./dist",          /* Where compiled .js files will go. */
+    "strict": true,              /* Enable strict type-checking options. */
+    "esModuleInterop": true,     /* Enables compatibility with CommonJS modules. */
+    "skipLibCheck": true         /* Skip type checking of declaration files to speed up compilation. */
+  }
+}
