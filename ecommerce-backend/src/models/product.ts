@@ -9,6 +9,8 @@ interface IProduct extends Document {
   stock: number;
   rating: number;
   numOfReviews: number;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 const productSchema = new Schema({
