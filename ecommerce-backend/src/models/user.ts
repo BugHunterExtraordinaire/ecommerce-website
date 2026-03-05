@@ -25,3 +25,7 @@ userSchema.pre('save', async function() {
   const salt = await genSalt(14);
   this.password = await hash(this.password, salt);
 })
+
+userSchema.method('verifyPassword', async function(password) {
+  return await compare(password, this.password);
+})
