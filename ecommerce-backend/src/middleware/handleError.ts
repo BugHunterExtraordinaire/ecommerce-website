@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
 import mongoose from "mongoose";
+import { APIError } from "../errors";
 
-type CustomError = APIError | mongoose.Error;
-type ErrorHandlerFunction = (err: CustomError, req: Request, res: Response, next: NextFunction) => void;
+type ErrorHandlerFunction = (err: APIError, req: Request, res: Response, next: NextFunction) => void;
 type ErrorObject = {
   message: string,
   statusCode: number

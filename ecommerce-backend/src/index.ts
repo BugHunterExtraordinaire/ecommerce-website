@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
 import connectDB from './db/connect';
+import handleError from './middleware/handleError';
 
 type StartFunction = () => Promise<void>;
 
@@ -16,6 +17,8 @@ app.use(helmet());
 app.use(cors());
 
 const port: string = process.env.PORT || '3000';
+
+app.use(handleError);
 
 const start: StartFunction = async () => {
   try {
