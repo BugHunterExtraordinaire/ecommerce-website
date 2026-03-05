@@ -13,13 +13,12 @@ const loginUser: DefaultController = async (req, res) => {
   const isVerified: boolean = await user.verifyPassword(password);
   if (!isVerified) throw new NotFoundError("Invalid Credentials");
 
-  res.status(StatusCodes.OK).json({
-    user
-  });
+  res.status(StatusCodes.OK).json({ user });
 }
 
 const registerUser: DefaultController = async (req, res) => {
-
+  const user = await User.create(req.body);
+  res.status(StatusCodes.CREATED).json({ user });
 }
 
 export {
