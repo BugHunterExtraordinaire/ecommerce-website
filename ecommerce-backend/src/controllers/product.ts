@@ -60,7 +60,12 @@ const getAllProducts: DefaultController = async (req, res) => {
 }
 
 const getProduct: DefaultController = async (req, res) => {
+  const { productId } = req.params;
 
+  const product = await Product.findById(productId);
+  if (!product) throw new NotFoundError(`No product was found with id: ${productId}`);
+
+  res.status(StatusCodes.OK).json(product);
 }
 
 export {
