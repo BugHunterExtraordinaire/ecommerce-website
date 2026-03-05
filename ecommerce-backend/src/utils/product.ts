@@ -1,9 +1,10 @@
 import { BadRequestError } from "../errors";
-
-type OperatorMapObj = Record<string, string>;
-export type QueryObject = Record<string, number>;
-export type FilterObject = Record<string, QueryObject>;
-type FormatFunction = (query: string | undefined) => QueryObject | FilterObject;
+import { 
+  FormatFunction,
+  QueryObject,
+  FilterObject,
+  OperatorMapObj
+ } from "../types/utils/product";
 
 export const formatSort: FormatFunction = (sort) => {
   const sortObj: QueryObject = {};
