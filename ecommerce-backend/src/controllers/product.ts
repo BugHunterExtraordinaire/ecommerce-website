@@ -4,13 +4,14 @@ import {
   formatSort, 
   formatSelect, 
   filterNumbers,
-  FilterObject,
-  QueryObject
 } from "../utils/product";
+import {
+  FilterObject,
+  SortObject,
+  QueryObject
+} from '../types/utils/product';
 import { NotFoundError } from "../errors";
 import { StatusCodes } from "http-status-codes";
-
-type SortObject = Record<string, 1 | -1>;
 
 const getAllProducts: DefaultController = async (req, res) => {
   const {
