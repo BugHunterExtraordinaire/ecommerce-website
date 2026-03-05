@@ -1,5 +1,16 @@
 import { Schema, model, Document } from "mongoose";
 
+interface IProduct extends Document {
+  name: string;
+  description: string;
+  price: number;
+  catergory: string;
+  images: Array<string>;
+  stock: number;
+  rating: number;
+  numOfReviews: number;
+}
+
 const productSchema = new Schema({
   name: {
     type: String,
