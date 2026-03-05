@@ -2,8 +2,6 @@ import express, { Express } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
-import { connect } from 'node:http2';
-import console from 'node:console';
 
 type StartFunction = () => Promise<void>;
 
