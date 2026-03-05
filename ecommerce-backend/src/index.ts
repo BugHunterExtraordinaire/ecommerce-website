@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
+import connectDB from './db/connect';
 
 type StartFunction = () => Promise<void>;
 
@@ -18,7 +19,7 @@ const port: string = process.env.PORT || '3000';
 
 const start: StartFunction = async () => {
   try {
-    await connectDB(process.env.MONGO_URI);
+    await connectDB(process.env.MONGO_URI as string);
     app.listen(port, (): void => console.log(`Server is listening on port ${port}...`));
   } catch (error) {
     
