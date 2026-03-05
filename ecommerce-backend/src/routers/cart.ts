@@ -1,10 +1,11 @@
 import { Router } from "express";
 import { getUserCart, deleteUserCart, updateUserCart } from "../controllers/cart";
+import { authorizeUser } from "../middleware/authorize";
 
 const router = Router();
 
-router.route('/:userId').get(getUserCart)
-                        .delete(deleteUserCart);;
-router.patch('/:userId/:productId/update', updateUserCart);
+router.route('/:userId').get(authorizeUser, getUserCart)
+                        .delete(authorizeUser, deleteUserCart);;
+router.patch('/:userId/:productId/update', authorizeUser, updateUserCart);
 
 export default router;
