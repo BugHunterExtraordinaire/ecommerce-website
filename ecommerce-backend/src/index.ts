@@ -19,6 +19,8 @@ const app: Express = express();
 app.use(helmet());
 app.use(cors());
 
+app.use(express.json());
+
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/products', productRouter);
 app.use('/aoi/v1/cart', cartRouter)
