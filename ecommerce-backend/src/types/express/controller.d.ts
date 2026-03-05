@@ -2,7 +2,8 @@ import * as express from "express";
 import { Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
 
-type DefaultController = (req: Request, res: Response, next?: NextFunction) => Promise<void>;
+export type DefaultController = (req: Request, res: Response) => Promise<void>;
+export type DefaultMiddleware = (req: Request, res: Response, next: NextFunction) => void;
 
 declare global {
   namespace Express {
@@ -11,5 +12,3 @@ declare global {
     }
   }
 }
-
-export default DefaultController;

@@ -1,5 +1,6 @@
-import { default as DefaultController } from './controller';
+import { DefaultController, DefaultMiddleware } from './controller';
 
 export {
-  DefaultController
+  DefaultController,
+  DefaultMiddleware
 }
