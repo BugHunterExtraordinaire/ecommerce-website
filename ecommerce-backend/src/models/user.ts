@@ -44,7 +44,7 @@ userSchema.method('generateJwt', function() {
     {
       userId: this._id
     },
-    process.env.JWT_SCERET as string,
+    process.env.JWT_SECRET as string,
     {
       expiresIn: process.env.JWT_LIFETIME as string
     } as jwt.SignOptions 
