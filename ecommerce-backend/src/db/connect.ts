@@ -1,4 +1,4 @@
-import mongoose, { Mongoose } from "mongoose";
+import mongoose from "mongoose";
 import { ConnectFunction } from "../types/mongoose/connection/connect";
 
 const connectDB: ConnectFunction = async (url) => {

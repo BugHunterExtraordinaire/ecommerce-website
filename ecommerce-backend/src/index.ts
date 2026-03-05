@@ -7,8 +7,7 @@ import handleError from './middleware/handleError';
 import { default as userRouter } from './routers/user';
 import { default as productRouter } from './routers/product';
 import { default as cartRouter } from './routers/cart';
-
-type StartFunction = () => Promise<void>;
+import { StartFunction } from './types/express';
 
 dotenv.config({
   quiet: true

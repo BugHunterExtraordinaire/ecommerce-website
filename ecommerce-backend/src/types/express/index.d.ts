@@ -9,6 +9,8 @@ declare global {
   }
 }
 
+export type StartFunction = () => Promise<void>;
+
 export {
   DefaultController
 }
