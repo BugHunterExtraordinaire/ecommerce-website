@@ -1,4 +1,4 @@
-import { DefaultController } from "../types/express";
+import { DefaultController } from "../types/express/controller";
 import { default as Product } from "../models/product";
 import { 
   formatSort, 

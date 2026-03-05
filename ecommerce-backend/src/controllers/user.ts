@@ -1,4 +1,4 @@
-import { DefaultController } from "../types/express";
+import { DefaultController } from "../types/express/controller";
 import { default as User } from '../models/user';
 import { NotFoundError, BadRequestError } from "../errors";
 import { StatusCodes } from "http-status-codes";

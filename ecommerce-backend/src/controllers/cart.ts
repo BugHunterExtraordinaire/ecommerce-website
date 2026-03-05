@@ -1,4 +1,4 @@
-import { DefaultController } from "../types/express";
+import { DefaultController } from "../types/express/controller";
 
 const getUserCart: DefaultController = async (req, res) => {
 

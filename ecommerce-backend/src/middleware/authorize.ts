@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { DefaultController } from '../types/express';
+import { DefaultController } from '../types/express/controller';
 import { UnAuthenticatedError } from '../errors';
 
 export const authorizeUser: DefaultController = async (req, res, next) => {
