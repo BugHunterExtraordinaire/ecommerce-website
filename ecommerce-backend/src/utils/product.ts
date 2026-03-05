@@ -1,7 +1,9 @@
 import { BadRequestError } from "../errors";
 
-type QueryObject = Record<string, 1 | -1>;
-type FormatFunction = (query: string) => QueryObject;
+type OperatorMapObj = Record<string, string>;
+type QueryObject = Record<string, number>;
+type FilterObject = Record<string, QueryObject>;
+type FormatFunction = (query: string) => QueryObject | FilterObject;
 
 export const formatSort: FormatFunction = (sort) => {
   const sortObj: QueryObject = {};
@@ -50,4 +52,30 @@ export const formatSelect: FormatFunction = (select) => {
   }
   
   return selectObj;
+}
+
+export const filterNumbers: FormatFunction = (numericFilters) => {
+  const filterObj: FilterObject = {};
+
+  if (numericFilters) {
+    const operatorMap: OperatorMapObj = {
+      "<": "$lt",
+      "<=": "$lte",
+      ">": "$gt",
+      ">=": "$gte",
+      "=": "$eq",
+    };
+    
+    const entries = numericFilters.split(',');
+
+    const regExp = /\b(<|<=|>|>=|=)\b/;
+
+    const formattedEntries = entries.map(entry => entry.replace(regExp, match => `-${operatorMap[match]}-`));
+    formattedEntries.forEach(entry => {
+      const [field, operator, number] = entry.split('-');
+      filterObj[field][operator] = Number(number);
+    });
+  }
+
+  return filterObj;
 }
