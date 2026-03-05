@@ -1,14 +1,7 @@
 import { genSalt, hash, compare } from 'bcryptjs';
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import jwt from 'jsonwebtoken';
-
-interface IUser extends Document {
-  name: string;
-  email: string;
-  password: string;
-  verifyPassword(password: string): Promise<boolean>;
-  generateJwt(): string;
-}
+import { IUser } from '../types/mongoose';
 
 const userSchema = new Schema({
   name: {
