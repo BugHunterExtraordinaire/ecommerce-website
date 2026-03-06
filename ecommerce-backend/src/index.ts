@@ -22,7 +22,7 @@ app.use(express.json());
 
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/products', productRouter);
-app.use('/aoi/v1/cart', cartRouter)
+app.use('/api/v1/cart', cartRouter)
 
 app.use(handleError);
 
