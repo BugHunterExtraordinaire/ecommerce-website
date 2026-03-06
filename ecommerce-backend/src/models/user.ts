@@ -12,7 +12,7 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: [true, "Please provide an email"],
-    match: [/[\w.]+@\w{1,10}\.\w{1,3}/, "Please provide a valid email"],
+    match: [/[\w.]+@\w+\.\w+/, "Please provide a valid email"],
     unique: true,
     trim: true,
   },
@@ -24,7 +24,7 @@ const userSchema = new Schema({
 });
 
 userSchema.pre('save', async function() {
-  const salt = await genSalt(14);
+  const salt = await genSalt(10);
   this.password = await hash(this.password, salt);
 });
 
