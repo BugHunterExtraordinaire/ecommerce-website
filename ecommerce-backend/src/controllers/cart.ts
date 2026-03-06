@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import { default as Cart } from '../models/cart';
 import { DefaultController } from "../types/express/controller";
-import { BadRequestError, NotFoundError } from '../errors';
+import { NotFoundError } from '../errors';
 
 const createUserCart: DefaultController = async (req, res) => {
   const { userId, product } = req;
@@ -54,11 +54,16 @@ const updateUserCart: DefaultController = async (req, res) => {
 
   await cart.save();
 
-  res.status(StatusCodes.OK).json(cart);
+  res.status(StatusCodes.OK).send();
 }
 
 const deleteUserCart: DefaultController = async (req, res) => {
+  const user = await Cart.findOneAndDelete({
+    userId: req.userId
+  });
+  if (!user) throw new NotFoundError("No cart was found for this user");
 
+  res.status(StatusCodes.OK).send();
 }
 
 export {
