@@ -27,7 +27,7 @@ const cartSchema: Schema = new Schema({
 });
 
 cartSchema.pre('save', function(this: ICart) {
-  this.total = this.products.reduce((prev, current) => prev += current.price, 0);
+  this.total = this.products.reduce((prev, current) => prev += current.price * current.quantity, 0);
 });
 
 export default model<ICart>("Cart", cartSchema);
