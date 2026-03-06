@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { getAllProducts, getProduct } from "../controllers/product";
-import { authorizeUser } from "../middleware/authorize";
+import { authorizeUser } from "../middleware";
 
 const router = Router();
 

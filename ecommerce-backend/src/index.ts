@@ -3,7 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
 import connectDB from './db/connect';
-import handleError from './middleware/handleError';
+import { handleError } from './middleware';
 import { default as userRouter } from './routers/user';
 import { default as productRouter } from './routers/product';
 import { default as cartRouter } from './routers/cart';

@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import { DefaultController } from '../types/express/controller';
 import { UnAuthenticatedError } from '../errors';
 
-export const authorizeUser: DefaultController = async (req, res, next) => {
+const authorizeUser: DefaultController = async (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer ')) return next!(new UnAuthenticatedError("Not authorized to access this route"));
 
@@ -17,3 +17,5 @@ export const authorizeUser: DefaultController = async (req, res, next) => {
   }
 
 }
+
+export default authorizeUser;

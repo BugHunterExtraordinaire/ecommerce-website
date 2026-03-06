@@ -5,13 +5,13 @@ import {
   updateUserCart, 
   createUserCart 
 } from "../controllers/cart";
-import { authorizeUser } from "../middleware/authorize";
+import { authorizeUser, validateProduct } from "../middleware";
 
 const router = Router();
 
 router.route('/').get(authorizeUser, getUserCart)
                  .delete(authorizeUser, deleteUserCart);
-router.route('/:productId').patch(authorizeUser, updateUserCart)
-                           .post(authorizeUser, createUserCart);
+router.route('/:productId').patch([authorizeUser, validateProduct], updateUserCart)
+                           .post([authorizeUser, validateProduct], createUserCart);
 
 export default router;
