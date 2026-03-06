@@ -10,8 +10,8 @@ import { authorizeUser } from "../middleware/authorize";
 const router = Router();
 
 router.route('/:userId').get(authorizeUser, getUserCart)
-                        .post(authorizeUser, createUserCart)
                         .delete(authorizeUser, deleteUserCart);
-router.patch('/:userId/:productId/update', authorizeUser, updateUserCart);
+router.route('/:userId/:productId').patch(authorizeUser, updateUserCart)
+                                   .post(authorizeUser, createUserCart);
 
 export default router;
