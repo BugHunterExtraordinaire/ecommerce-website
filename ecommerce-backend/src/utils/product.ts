@@ -74,7 +74,14 @@ export const filterNumbers: FormatFunction = (numericFilters) => {
     const formattedEntries = entries.map(entry => entry.replace(regExp, match => `-${operatorMap[match]}-`));
     formattedEntries.forEach(entry => {
       const [field, operator, number] = entry.split('-');
-      filterObj[field][operator] = Number(number);
+      
+      if (!filterObj[field]) {
+        filterObj[field] = {} as QueryObject; 
+      }
+
+      if (typeof filterObj[field] !== 'string') {
+        (filterObj[field] as QueryObject)[operator] = Number(number);
+      }
     });
   }
 
