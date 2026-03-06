@@ -9,8 +9,6 @@ const getUserCart: DefaultController = async (req, res) => {
   });
   if (!cart) throw new NotFoundError(`No cart was found for user: ${req.userId}`);
 
-  await cart.save();
-
   res.status(StatusCodes.OK).json(cart);
 }
 
