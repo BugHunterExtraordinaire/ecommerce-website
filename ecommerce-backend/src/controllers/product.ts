@@ -22,21 +22,21 @@ const getAllProducts: DefaultController = async (req, res) => {
     category,
     limit,
     page
-  } = req.body;
+  } = req.query;
 
-  const findObject: FilterObject = filterNumbers(numericFilters) as FilterObject;
-  const sortObject: SortObject = formatSort(sort) as SortObject;
-  const selectObject: QueryObject = formatSelect(select) as QueryObject;
+  const findObject: FilterObject = filterNumbers(numericFilters as string) as FilterObject;
+  const sortObject: SortObject = formatSort(sort as string) as SortObject;
+  const selectObject: QueryObject = formatSelect(select as string) as QueryObject;
 
   let limitNum: number = 10;
   let pageNum: number = 0;
   
   if (name) {
-    findObject.name = name;
+    findObject.name = name as string;
   }
   
   if (category) {
-    findObject.category = category;
+    findObject.category = category as string;
   }
 
   if (limit) {
