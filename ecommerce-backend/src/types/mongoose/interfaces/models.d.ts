@@ -3,6 +3,7 @@ import mongoose, { Document } from "mongoose";
 type ProductArrayItem = {
   productId: mongoose.Types.ObjectId;
   quantity: number;
+  price: number;
 }
 
 export interface IUser extends Document {
