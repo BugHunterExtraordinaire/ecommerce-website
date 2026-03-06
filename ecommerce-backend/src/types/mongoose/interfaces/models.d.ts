@@ -1,4 +1,9 @@
-import { Document } from "mongoose";
+import mongoose, { Document } from "mongoose";
+
+type ProductArrayItem = {
+  productId: mongoose.Types.ObjectId;
+  quantity: number;
+}
 
 export interface IUser extends Document {
   name: string;
@@ -19,4 +24,10 @@ export interface IProduct extends Document {
   numOfReviews: number;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface ICart extends Document {
+  userId: mongoose.Types.ObjectId;
+  products: Array<ProductArrayItem>;
+  total: number;
 }
