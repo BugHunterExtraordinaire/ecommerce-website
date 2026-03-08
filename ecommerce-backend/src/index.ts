@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 import connectDB from './db/connect';
 import { handleError } from './middleware';
 import { default as userRouter } from './routers/user';
@@ -18,6 +19,7 @@ const app: Express = express();
 app.use(helmet());
 app.use(cors());
 
+app.use(cookieParser());
 app.use(express.json());
 
 app.use('/api/v1/users', userRouter);
