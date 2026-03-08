@@ -26,6 +26,10 @@ const registerUser: DefaultController = async (req, res) => {
   res.status(StatusCodes.CREATED).json({ user, token });
 }
 
+const logoutUser: DefaultController = async (req, res) => {
+  
+}
+
 export {
   loginUser,
   registerUser
