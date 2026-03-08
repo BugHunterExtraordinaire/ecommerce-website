@@ -3,17 +3,19 @@ import { DefaultController } from '../types/express/controller';
 import { UnAuthenticatedError } from '../errors';
 
 const authorizeUser: DefaultController = async (req, res, next) => {
-  const authHeader = req.headers.authorization;
-  if (!authHeader || !authHeader.startsWith('Bearer ')) return next!(new UnAuthenticatedError("Not authorized to access this route"));
+  const token = req.cookies.authCookie;
 
-  const token = authHeader.split(' ')[1];
-
-  try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET as string);
-    req.userId = payload as Express.Request["userId"];
-    next!();
-  } catch (error) {
-    next!(new UnAuthenticatedError("Not authorized to access this route"));
+  if (token) {
+    try {
+      const payload = jwt.verify(token, process.env.JWT_SECRET as string);
+      
+      req.userId = payload as Express.Request["userId"];
+      next!();
+    } catch (error) {
+      next!(new UnAuthenticatedError("Invalid token"));
+    }
+  } else {
+    next!(new UnAuthenticatedError("No token issued"));
   }
 
 }
