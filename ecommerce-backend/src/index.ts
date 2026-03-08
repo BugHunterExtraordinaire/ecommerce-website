@@ -17,7 +17,15 @@ dotenv.config({
 const app: Express = express();
 
 app.use(helmet());
-app.use(cors());
+app.use(cors(
+  {
+    origin: [
+      'http://localhost:5173',
+      process.env.FRONTEND_DOMAIN as string
+    ],
+    credentials: true
+  }
+));
 
 app.use(cookieParser());
 app.use(express.json());
@@ -35,7 +43,7 @@ const start: StartFunction = async () => {
     await connectDB(process.env.MONGO_URI as string);
     app.listen(port, (): void => console.log(`Server is listening on port ${port}...`));
   } catch (error) {
-    
+
   }
 }
 
