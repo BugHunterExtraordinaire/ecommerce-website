@@ -3,6 +3,8 @@ import { default as User } from '../models/user';
 import { NotFoundError, BadRequestError } from "../errors";
 import { StatusCodes } from "http-status-codes";
 
+const isProduction: boolean = process.env.NODE_ENV === "production";
+
 const loginUser: DefaultController = async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) throw new BadRequestError("Please provide both email and password");
@@ -15,7 +17,19 @@ const loginUser: DefaultController = async (req, res) => {
 
   const token: string = user.generateJwt();
 
-  res.status(StatusCodes.OK).json({ user, token });
+  res.cookie("authCookie", token, {
+    httpOnly: true,
+    secure: isProduction,
+    sameSite: isProduction ? "strict" : "lax",
+    maxAge: 1 * 60 * 60 * 1000
+  });
+
+  res.status(StatusCodes.OK).json({
+    status: "Success",
+    user: {
+      name: user.name
+    }
+  });
 }
 
 const registerUser: DefaultController = async (req, res) => {
@@ -23,11 +37,29 @@ const registerUser: DefaultController = async (req, res) => {
 
   const token: string = user.generateJwt();
 
-  res.status(StatusCodes.CREATED).json({ user, token });
+  res.cookie("authCookie", token, {
+    httpOnly: true,
+    secure: isProduction,
+    sameSite: isProduction ? "strict" : "lax",
+    maxAge: 1 * 60 * 60 * 1000
+  });
+
+  res.status(StatusCodes.CREATED).json({
+    status: "Success",
+    user: {
+      name: user.name
+    }
+  });
 }
 
 const logoutUser: DefaultController = async (req, res) => {
-  
+  res.clearCookie("authToken", {
+    httpOnly: true,
+    secure: isProduction,
+    sameSite: isProduction ? "strict" : "lax"
+  });
+
+  res.status(StatusCodes.OK).json();
 }
 
 export {
