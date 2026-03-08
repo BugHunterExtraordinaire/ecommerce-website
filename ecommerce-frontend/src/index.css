@@ -1,1 +1,6 @@
 @import 'tailwindcss';
+
+:root {
+  --bg-color: hsl(100, 85%, 25%);
+  --font-color: hsl(0, 0%, 95%);
+}
