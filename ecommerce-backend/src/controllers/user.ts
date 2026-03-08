@@ -20,7 +20,7 @@ const loginUser: DefaultController = async (req, res) => {
   res.cookie("authCookie", token, {
     httpOnly: true,
     secure: isProduction,
-    sameSite: isProduction ? "strict" : "lax",
+    sameSite: isProduction ? "none" : "lax",
     maxAge: 1 * 60 * 60 * 1000
   });
 
@@ -40,7 +40,7 @@ const registerUser: DefaultController = async (req, res) => {
   res.cookie("authCookie", token, {
     httpOnly: true,
     secure: isProduction,
-    sameSite: isProduction ? "strict" : "lax",
+    sameSite: isProduction ? "none" : "lax",
     maxAge: 1 * 60 * 60 * 1000
   });
 
@@ -56,7 +56,7 @@ const logoutUser: DefaultController = async (req, res) => {
   res.clearCookie("authToken", {
     httpOnly: true,
     secure: isProduction,
-    sameSite: isProduction ? "strict" : "lax"
+    sameSite: isProduction ? "none" : "lax"
   });
 
   res.status(StatusCodes.OK).json();
